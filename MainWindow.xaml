@@ -1,0 +1,92 @@
+﻿<Window x:Class="TodoList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TodoList"
+        xmlns:ViewModel="clr-namespace:TodoList.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="600">
+    <Window.DataContext>
+        <ViewModel:MainVM></ViewModel:MainVM>
+    </Window.DataContext>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="12*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label FontSize="28" FontWeight="Bold"
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+            Foreground="White" Background="#4e92ce">TodoList</Label>
+        <Label Grid.Column="1" Background="#4e92ce"></Label>
+
+        <StackPanel Grid.Row="1">
+            <Button Click="Button_Click" Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/home.png"></Image>
+                    <Label FontSize="14"
+                        VerticalContentAlignment="Center">Home</Label>
+                </StackPanel>
+            </Button>
+
+            <Button Click="ButtonTodosClick" Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/list.png"></Image>
+                    <Label FontSize="14"
+                        VerticalContentAlignment="Center">Todos</Label>
+                </StackPanel>
+            </Button>
+
+            <Button Click="Button_Click" Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/info.png"></Image>
+                    <Label FontSize="14"
+                        VerticalContentAlignment="Center">About</Label>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <StackPanel x:Name="HiddenTodosMenu" Visibility="Hidden" Grid.Row="1" Grid.Column="1">
+            
+            <Button BorderBrush="White" Width="50" HorizontalAlignment="Right" Background="White">
+                <Image Height="50" Source="/file.png" HorizontalAlignment="Right"></Image>
+            </Button>
+            
+            <TextBox FontSize="20"></TextBox>
+            
+            <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Todos</Label>
+            <ListBox ItemsSource="{Binding DoneExercises, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox></CheckBox>
+                            <Label Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
+                            <Button></Button>
+                            <Button></Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Finished</Label>
+            <ListBox BorderBrush="White">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox></CheckBox>
+                            <Label></Label>
+                            <Button></Button>
+                            <Button></Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>

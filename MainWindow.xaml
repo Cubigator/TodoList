@@ -29,7 +29,7 @@
         <StackPanel Grid.Row="1">
             <Button Click="Button_Click" Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/home.png"></Image>
+                    <Image Source="/../Images/home.png"></Image>
                     <Label FontSize="14"
                         VerticalContentAlignment="Center">Home</Label>
                 </StackPanel>
@@ -37,7 +37,7 @@
 
             <Button Click="ButtonTodosClick" Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/list.png"></Image>
+                    <Image Source="/../Images/list.png"></Image>
                     <Label FontSize="14"
                         VerticalContentAlignment="Center">Todos</Label>
                 </StackPanel>
@@ -45,7 +45,7 @@
 
             <Button Click="Button_Click" Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/info.png"></Image>
+                    <Image Source="/../Images/info.png"></Image>
                     <Label FontSize="14"
                         VerticalContentAlignment="Center">About</Label>
                 </StackPanel>
@@ -54,39 +54,48 @@
 
         <StackPanel x:Name="HiddenTodosMenu" Visibility="Hidden" Grid.Row="1" Grid.Column="1">
             
-            <Button BorderBrush="White" Width="50" HorizontalAlignment="Right" Background="White">
-                <Image Height="50" Source="/file.png" HorizontalAlignment="Right"></Image>
+            <Button Command="{Binding AddTodos, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White" Width="50" HorizontalAlignment="Right" Background="White">
+                <Image Height="50" Source="/../Images/file.png" HorizontalAlignment="Right"></Image>
             </Button>
             
             <TextBox FontSize="20"></TextBox>
             
             <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Todos</Label>
-            <ListBox ItemsSource="{Binding DoneExercises, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White">
+            <ListBox ItemsSource="{Binding Todos, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <CheckBox></CheckBox>
                             <Label Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
-                            <Button></Button>
-                            <Button></Button>
+                            <Button>
+                                <Image Height="25" Source="/../Images/edit.png"></Image>
+                            </Button>
+                            <Button>
+                                <Image Height="25" Source="/../Images/delete.png"></Image>
+                            </Button>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
             
             <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Finished</Label>
-            <ListBox BorderBrush="White">
+            <ListBox ItemsSource="{Binding Finished, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox></CheckBox>
-                            <Label></Label>
-                            <Button></Button>
-                            <Button></Button>
+                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+                            <Label HorizontalAlignment="Left" Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
+                            <Button>
+                                <Image Height="25" Source="/../Images/edit.png"></Image>
+                            </Button>
+                            <Button>
+                                <Image Height="25" Source="/../Images/delete.png"></Image>
+                            </Button>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            
         </StackPanel>
     </Grid>
 </Window>

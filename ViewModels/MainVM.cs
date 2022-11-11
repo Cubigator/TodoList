@@ -15,16 +15,30 @@ namespace TodoList.ViewModels
 
         public MainVM()
         {
-            DoneExercises = JsonHandler.Load();
+            _AllExercises = JsonHandler.Load();
+            Todos = (from ex in _AllExercises where ex.IsDone == false select ex).ToList();
+            Finished = (from ex in _AllExercises where ex.IsDone == true select ex).ToList();
         }
-
-        public List<Exercise> DoneExercises { get; set; }
+        List<Exercise> _AllExercises;
+        public List<Exercise> Todos { get; set; }
+        public List<Exercise> Finished { get; set; }
 
         void Notify(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        public ButtonCommand AddTodos
+        {
+            get
+            {
+                return new ButtonCommand(() =>
+                    {
+                        AddExercise addExercise = new AddExercise();
+                        addExercise.ShowDialog();
+                    });
+            }
+        }
 
     }
 }

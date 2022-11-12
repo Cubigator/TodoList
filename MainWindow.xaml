@@ -53,24 +53,25 @@
         </StackPanel>
 
         <StackPanel x:Name="HiddenTodosMenu" Visibility="Hidden" Grid.Row="1" Grid.Column="1">
-            
-            <Button Command="{Binding AddTodos, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White" Width="50" HorizontalAlignment="Right" Background="White">
+
+            <Button Command="{Binding AddTodosMenu, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White" Width="50" HorizontalAlignment="Right" Background="White">
                 <Image Height="50" Source="/../Images/file.png" HorizontalAlignment="Right"></Image>
             </Button>
             
             <TextBox FontSize="20"></TextBox>
             
             <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Todos</Label>
-            <ListBox ItemsSource="{Binding Todos, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White">
+            <ListBox SelectedItem="{Binding Selected, UpdateSourceTrigger=PropertyChanged}"
+                     ItemsSource="{Binding Todos, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox></CheckBox>
+                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
                             <Label Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
                             <Button>
                                 <Image Height="25" Source="/../Images/edit.png"></Image>
                             </Button>
-                            <Button>
+                            <Button Command="{Binding DeleteExercise, UpdateSourceTrigger=PropertyChanged}">
                                 <Image Height="25" Source="/../Images/delete.png"></Image>
                             </Button>
                         </StackPanel>
@@ -79,7 +80,8 @@
             </ListBox>
             
             <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Finished</Label>
-            <ListBox ItemsSource="{Binding Finished, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White">
+            <ListBox SelectedItem="{Binding Selected, UpdateSourceTrigger=PropertyChanged}"
+                     ItemsSource="{Binding Finished, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -88,7 +90,7 @@
                             <Button>
                                 <Image Height="25" Source="/../Images/edit.png"></Image>
                             </Button>
-                            <Button>
+                            <Button Command="{Binding DeleteExercise, UpdateSourceTrigger=PropertyChanged}">
                                 <Image Height="25" Source="/../Images/delete.png"></Image>
                             </Button>
                         </StackPanel>

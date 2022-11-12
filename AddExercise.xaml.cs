@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TodoList.ViewModels
+namespace TodoList
 {
     /// <summary>
     /// Логика взаимодействия для AddExercise.xaml

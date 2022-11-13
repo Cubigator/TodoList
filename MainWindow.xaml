@@ -27,7 +27,8 @@
         <Label Grid.Column="1" Background="#4e92ce"></Label>
 
         <StackPanel Grid.Row="1">
-            <Button Click="Button_Click" Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
+            <Button Command="{Binding HideTodos, UpdateSourceTrigger=PropertyChanged}"
+                    Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/../Images/home.png"></Image>
                     <Label FontSize="14"
@@ -35,7 +36,8 @@
                 </StackPanel>
             </Button>
 
-            <Button Click="ButtonTodosClick" Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
+            <Button Command="{Binding ShowTodos, UpdateSourceTrigger=PropertyChanged}" 
+                    Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/../Images/list.png"></Image>
                     <Label FontSize="14"
@@ -43,7 +45,8 @@
                 </StackPanel>
             </Button>
 
-            <Button Click="Button_Click" Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
+            <Button Command="{Binding HideTodos, UpdateSourceTrigger=PropertyChanged}"
+                    Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/../Images/info.png"></Image>
                     <Label FontSize="14"
@@ -52,13 +55,13 @@
             </Button>
         </StackPanel>
 
-        <StackPanel x:Name="HiddenTodosMenu" Visibility="Hidden" Grid.Row="1" Grid.Column="1">
+        <StackPanel Visibility="{Binding TodosVisibility, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1">
 
             <Button Command="{Binding AddTodosMenu, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White" Width="50" HorizontalAlignment="Right" Background="White">
                 <Image Height="50" Source="/../Images/file.png" HorizontalAlignment="Right"></Image>
             </Button>
-            
-            <TextBox FontSize="20"></TextBox>
+
+            <TextBox Text="{Binding Find, UpdateSourceTrigger=PropertyChanged}" FontSize="20"></TextBox>
             
             <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Todos</Label>
             <ListBox SelectedItem="{Binding Selected, UpdateSourceTrigger=PropertyChanged}"
@@ -71,7 +74,7 @@
                             <Button>
                                 <Image Height="25" Source="/../Images/edit.png"></Image>
                             </Button>
-                            <Button Command="{Binding DeleteExercise, UpdateSourceTrigger=PropertyChanged}">
+                            <Button Command="{Binding Delete, UpdateSourceTrigger=PropertyChanged}">
                                 <Image Height="25" Source="/../Images/delete.png"></Image>
                             </Button>
                         </StackPanel>
@@ -90,7 +93,7 @@
                             <Button>
                                 <Image Height="25" Source="/../Images/edit.png"></Image>
                             </Button>
-                            <Button Command="{Binding DeleteExercise, UpdateSourceTrigger=PropertyChanged}">
+                            <Button Command="{Binding Delete, UpdateSourceTrigger=PropertyChanged}">
                                 <Image Height="25" Source="/../Images/delete.png"></Image>
                             </Button>
                         </StackPanel>

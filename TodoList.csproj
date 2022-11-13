@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Exercise.cs" />
+    <Compile Include="Model\ExerciseCE.cs" />
     <Compile Include="Savings\JsonHandler.cs" />
     <Compile Include="AddExercise.xaml.cs">
       <DependentUpon>AddExercise.xaml</DependentUpon>

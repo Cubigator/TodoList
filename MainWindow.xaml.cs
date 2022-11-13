@@ -24,15 +24,5 @@ namespace TodoList
         {
             InitializeComponent();
         }
-
-        private void ButtonTodosClick(object sender, RoutedEventArgs e)
-        {
-            HiddenTodosMenu.Visibility = Visibility.Visible;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            HiddenTodosMenu.Visibility = Visibility.Hidden;
-        }
     }
 }

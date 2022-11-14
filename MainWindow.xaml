@@ -71,11 +71,14 @@
                         <StackPanel Orientation="Horizontal">
                             <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
                             <Label Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
-                            <Button>
+                            <Button Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/edit.png"></Image>
                             </Button>
-                            <Button Command="{Binding Delete, UpdateSourceTrigger=PropertyChanged}">
+                            <Button Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/delete.png"></Image>
+                            </Button>
+                            <Button Background="White" BorderBrush="White">
+                                <Image Height="25" Source="/../Images/open.png"></Image>
                             </Button>
                         </StackPanel>
                     </DataTemplate>
@@ -90,11 +93,14 @@
                         <StackPanel Orientation="Horizontal">
                             <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
                             <Label HorizontalAlignment="Left" Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
-                            <Button>
+                            <Button Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/edit.png"></Image>
                             </Button>
-                            <Button Command="{Binding Delete, UpdateSourceTrigger=PropertyChanged}">
+                            <Button Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/delete.png"></Image>
+                            </Button>
+                            <Button Background="White" BorderBrush="White">
+                                <Image Height="25" Source="/../Images/open.png"></Image>
                             </Button>
                         </StackPanel>
                     </DataTemplate>

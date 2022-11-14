@@ -113,21 +113,6 @@ namespace TodoList.ViewModels
             }
         }
 
-        public ButtonCommand DeleteExercise
-        {
-            get
-            {
-                return new ButtonCommand(() =>
-                {
-                    _AllExercises.Remove(Selected);
-                    UpdateCategories(SearchedTodos);
-                    Notify("Todos");
-                    Notify("Finished");
-                    JsonHandler.Save(_AllExercises);
-                });
-            }
-        }
-
         public ButtonCommand ShowTodos
         {
             get
@@ -146,6 +131,21 @@ namespace TodoList.ViewModels
                 return new ButtonCommand(() =>
                 {
                     TodosVisibility = Visibility.Hidden;
+                });
+            }
+        }
+
+        public ButtonCommand DeleteExercise
+        {
+            get
+            {
+                return new ButtonCommand(() =>
+                {
+                    _AllExercises.Remove(Selected);
+                    UpdateCategories(SearchedTodos);
+                    Notify("Todos");
+                    Notify("Finished");
+                    JsonHandler.Save(_AllExercises);
                 });
             }
         }

@@ -65,6 +65,7 @@
       <DependentUpon>AddExercise.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ButtonCommand.cs" />
+    <Compile Include="ViewModels\ItemButtonCommand.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -74,7 +74,8 @@
                             <Button Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/edit.png"></Image>
                             </Button>
-                            <Button Background="White" BorderBrush="White">
+                            <Button Command="{Binding Delete, UpdateSourceTrigger=PropertyChanged}" 
+                                    Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/delete.png"></Image>
                             </Button>
                             <Button Background="White" BorderBrush="White">
@@ -96,7 +97,8 @@
                             <Button Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/edit.png"></Image>
                             </Button>
-                            <Button Background="White" BorderBrush="White">
+                            <Button Command="{Binding Delete, UpdateSourceTrigger=PropertyChanged}"
+                                    Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/delete.png"></Image>
                             </Button>
                             <Button Background="White" BorderBrush="White">

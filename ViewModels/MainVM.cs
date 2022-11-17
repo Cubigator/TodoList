@@ -32,8 +32,8 @@ namespace TodoList.ViewModels
         Visibility _todosVisibility;
 
         List<Exercise> _AllExercises;
-        public List<Exercise> Todos { get; set; }
-        public List<Exercise> Finished { get; set; }
+        public List<ExerciseEC> Todos { get; set; }
+        public List<ExerciseEC> Finished { get; set; }
         public List<Exercise> SearchedTodos { get; set; }
 
 
@@ -43,8 +43,41 @@ namespace TodoList.ViewModels
         }
         void UpdateCategories(List<Exercise> source)
         {
-            Todos = (from ex in source where ex.IsDone == false select ex).ToList();
-            Finished = (from ex in source where ex.IsDone == true select ex).ToList();
+            Todos = new List<ExerciseEC>();
+            for (int i = 0; i < source.Count; i++)
+            {
+                if (source[i].IsDone == false)
+                {
+                    ExerciseEC exerciseEC = new ExerciseEC()
+                    {
+                        Header = source[i].Header,
+                        MainText = source[i].MainText,
+                        IsDone = source[i].IsDone,
+                    };
+                    Todos.Add(exerciseEC);
+                }
+            }
+            Finished = new List<ExerciseEC>();
+            for (int i = 0; i < source.Count; i++)
+            {
+                if (source[i].IsDone == true)
+                {
+                    ExerciseEC exerciseEC = new ExerciseEC()
+                    {
+                        Header = source[i].Header,
+                        MainText = source[i].MainText,
+                        IsDone = source[i].IsDone,
+                        Delete = new ItemButtonCommand(() =>
+                        {
+                            _AllExercises.Remove(Selected);
+                            UpdateCategories(SearchedTodos);
+                            Notify("Todos");
+                            Notify("Finished");
+                            JsonHandler.Save(_AllExercises);
+                        }, i)};
+                    Finished.Add(exerciseEC);
+                }
+            }
             Notify("Todos");
             Notify("Finished");
         }

@@ -9,6 +9,7 @@ namespace TodoList.Model
 {
     public class ExerciseEC : Exercise
     {
+        public int Index { get; set; }
         public ItemButtonCommand Edit { get; set; }
         public ItemButtonCommand Delete { get; set; }
         public ItemButtonCommand Open { get; set; }

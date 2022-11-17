@@ -10,12 +10,10 @@ namespace TodoList.ViewModels
     public class ItemButtonCommand : ICommand
     {
         Action _action;
-        public object Id { get; set; }
 
-        public ItemButtonCommand(Action action, object id)
+        public ItemButtonCommand(Action action)
         {
             _action = action;
-            Id = id;
         }
 
         public event EventHandler CanExecuteChanged

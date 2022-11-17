@@ -21,6 +21,7 @@ namespace TodoList.ViewModels
             _addedTask = new Exercise();
             Selected = new Exercise();
             TodosVisibility = Visibility.Hidden;
+            Find = "";
         }
 
 
@@ -50,13 +51,24 @@ namespace TodoList.ViewModels
                 {
                     ExerciseEC exerciseEC = new ExerciseEC()
                     {
+                        Index = i,
                         Header = source[i].Header,
                         MainText = source[i].MainText,
                         IsDone = source[i].IsDone,
                     };
+                    exerciseEC.Delete = new ItemButtonCommand(() =>
+                    {
+                        _AllExercises.RemoveAt(exerciseEC.Index);
+                        SearchedTodos = (from ex in _AllExercises where ex.Header.ToLower().IndexOf(_find.ToLower()) != -1 select ex).ToList();
+                        UpdateCategories(SearchedTodos);
+                        Notify("Todos");
+                        Notify("Finished");
+                        JsonHandler.Save(_AllExercises);
+                    });
                     Todos.Add(exerciseEC);
                 }
             }
+
             Finished = new List<ExerciseEC>();
             for (int i = 0; i < source.Count; i++)
             {
@@ -64,22 +76,26 @@ namespace TodoList.ViewModels
                 {
                     ExerciseEC exerciseEC = new ExerciseEC()
                     {
+                        Index = i,
                         Header = source[i].Header,
                         MainText = source[i].MainText,
                         IsDone = source[i].IsDone,
-                        Delete = new ItemButtonCommand(() =>
-                        {
-                            _AllExercises.Remove(Selected);
-                            UpdateCategories(SearchedTodos);
-                            Notify("Todos");
-                            Notify("Finished");
-                            JsonHandler.Save(_AllExercises);
-                        }, i)};
+                    };
+                    exerciseEC.Delete = new ItemButtonCommand(() =>
+                    {
+                        _AllExercises.RemoveAt(exerciseEC.Index);
+                        SearchedTodos = (from ex in _AllExercises where ex.Header.ToLower().IndexOf(_find.ToLower()) != -1 select ex).ToList();
+                        UpdateCategories(SearchedTodos);
+                        Notify("Todos");
+                        Notify("Finished");
+                        JsonHandler.Save(_AllExercises);
+                    });
                     Finished.Add(exerciseEC);
                 }
             }
             Notify("Todos");
             Notify("Finished");
+            Notify("SearchedTodos");
         }
 
         public string Find
@@ -124,6 +140,7 @@ namespace TodoList.ViewModels
                         if(_addExercise.DialogResult == true)
                         {
                             _AllExercises.Add(AddedTask);
+                            
                             SearchedTodos = (from ex in _AllExercises where ex.Header.ToLower().IndexOf(_find.ToLower()) != -1 select ex).ToList();
                             UpdateCategories(SearchedTodos);
                             Notify("Todos");
@@ -168,11 +185,13 @@ namespace TodoList.ViewModels
             }
         }
 
-        public ButtonCommand DeleteExercise
+        object a;
+
+        public ItemButtonCommand DeleteExercise
         {
             get
             {
-                return new ButtonCommand(() =>
+                return new ItemButtonCommand(() =>
                 {
                     _AllExercises.Remove(Selected);
                     UpdateCategories(SearchedTodos);

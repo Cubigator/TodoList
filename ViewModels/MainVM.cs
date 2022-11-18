@@ -65,6 +65,13 @@ namespace TodoList.ViewModels
                         Notify("Finished");
                         JsonHandler.Save(_AllExercises);
                     });
+                    exerciseEC.Edit = new ItemButtonCommand(() =>
+                    {
+                        ExerciseINFO.Header = SearchedTodos[exerciseEC.Index].Header;
+                        ExerciseINFO.MainText = SearchedTodos[exerciseEC.Index].MainText;
+                        ExerciseWindow exerciseWindow = new ExerciseWindow();
+                        exerciseWindow.Show();
+                    });
                     Todos.Add(exerciseEC);
                 }
             }
@@ -89,6 +96,13 @@ namespace TodoList.ViewModels
                         Notify("Todos");
                         Notify("Finished");
                         JsonHandler.Save(_AllExercises);
+                    });
+                    exerciseEC.Edit = new ItemButtonCommand(() =>
+                    {
+                        ExerciseINFO.Header = SearchedTodos[exerciseEC.Index].Header;
+                        ExerciseINFO.MainText = SearchedTodos[exerciseEC.Index].MainText;
+                        ExerciseWindow exerciseWindow = new ExerciseWindow();
+                        exerciseWindow.Show();
                     });
                     Finished.Add(exerciseEC);
                 }

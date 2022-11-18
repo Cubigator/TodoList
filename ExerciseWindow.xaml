@@ -1,0 +1,20 @@
+﻿<Window x:Class="TodoList.ExerciseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TodoList"
+        xmlns:ViewModel="clr-namespace:TodoList.ViewModels"
+        mc:Ignorable="d"
+        Title="ExerciseWindow" Height="500" Width="300">
+    <Window.DataContext>
+        <ViewModel:ExerciseVM></ViewModel:ExerciseVM>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="{Binding Header, UpdateSourceTrigger=PropertyChanged}"
+                TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="24"></TextBlock>
+            <Label FontSize="16" Content="{Binding MainText, UpdateSourceTrigger=PropertyChanged}"></Label>
+        </StackPanel>
+    </Grid>
+</Window>

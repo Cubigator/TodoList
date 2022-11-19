@@ -19,15 +19,13 @@ namespace TodoList.ViewModels
             _AllExercises = JsonHandler.Load();
             UpdateCategories(_AllExercises);
             _addedTask = new Exercise();
-            Selected = new Exercise();
             TodosVisibility = Visibility.Hidden;
             Find = "";
         }
 
-
         static Exercise _addedTask;
         static AddExercise _addExercise = new AddExercise();
-        public Exercise Selected { get; set; }
+
         string _find;
 
         Visibility _todosVisibility;
@@ -42,6 +40,7 @@ namespace TodoList.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
         void UpdateCategories(List<Exercise> source)
         {
             Todos = new List<ExerciseEC>();
@@ -70,7 +69,11 @@ namespace TodoList.ViewModels
                         ExerciseINFO.Header = SearchedTodos[exerciseEC.Index].Header;
                         ExerciseINFO.MainText = SearchedTodos[exerciseEC.Index].MainText;
                         ExerciseWindow exerciseWindow = new ExerciseWindow();
-                        exerciseWindow.Show();
+                        exerciseWindow.ShowDialog();
+                        SearchedTodos[exerciseEC.Index].Header = ExerciseINFO.Header;
+                        SearchedTodos[exerciseEC.Index].MainText = ExerciseINFO.MainText;
+                        UpdateCategories(SearchedTodos);
+                        JsonHandler.Save(_AllExercises);
                     });
                     Todos.Add(exerciseEC);
                 }
@@ -102,7 +105,11 @@ namespace TodoList.ViewModels
                         ExerciseINFO.Header = SearchedTodos[exerciseEC.Index].Header;
                         ExerciseINFO.MainText = SearchedTodos[exerciseEC.Index].MainText;
                         ExerciseWindow exerciseWindow = new ExerciseWindow();
-                        exerciseWindow.Show();
+                        exerciseWindow.ShowDialog();
+                        SearchedTodos[exerciseEC.Index].Header = ExerciseINFO.Header;
+                        SearchedTodos[exerciseEC.Index].MainText = ExerciseINFO.MainText;
+                        UpdateCategories(SearchedTodos);
+                        JsonHandler.Save(_AllExercises);
                     });
                     Finished.Add(exerciseEC);
                 }
@@ -195,23 +202,6 @@ namespace TodoList.ViewModels
                 return new ButtonCommand(() =>
                 {
                     TodosVisibility = Visibility.Hidden;
-                });
-            }
-        }
-
-        object a;
-
-        public ItemButtonCommand DeleteExercise
-        {
-            get
-            {
-                return new ItemButtonCommand(() =>
-                {
-                    _AllExercises.Remove(Selected);
-                    UpdateCategories(SearchedTodos);
-                    Notify("Todos");
-                    Notify("Finished");
-                    JsonHandler.Save(_AllExercises);
                 });
             }
         }

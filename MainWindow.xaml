@@ -64,12 +64,13 @@
             <TextBox Text="{Binding Find, UpdateSourceTrigger=PropertyChanged}" FontSize="20"></TextBox>
             
             <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Todos</Label>
-            <ListBox SelectedItem="{Binding Selected, UpdateSourceTrigger=PropertyChanged}"
-                     ItemsSource="{Binding Todos, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White">
+            <ListBox ItemsSource="{Binding Todos, UpdateSourceTrigger=PropertyChanged}" 
+                     BorderBrush="White">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox IsChecked="{Binding IsDone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
                             <Label Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
                             <Button Command="{Binding Edit, UpdateSourceTrigger=PropertyChanged}"
                                 Background="White" BorderBrush="White">
@@ -85,12 +86,13 @@
             </ListBox>
             
             <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Finished</Label>
-            <ListBox SelectedItem="{Binding Selected, UpdateSourceTrigger=PropertyChanged}"
-                     ItemsSource="{Binding Finished, UpdateSourceTrigger=PropertyChanged}" BorderBrush="White">
+            <ListBox ItemsSource="{Binding Finished, UpdateSourceTrigger=PropertyChanged}"
+                     BorderBrush="White">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox IsChecked="{Binding IsDone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
                             <Label HorizontalAlignment="Left" Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
                             <Button Command="{Binding Edit, UpdateSourceTrigger=PropertyChanged}"
                                 Background="White" BorderBrush="White">

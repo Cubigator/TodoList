@@ -12,9 +12,25 @@
     </Window.DataContext>
     <Grid>
         <StackPanel>
-            <TextBlock Text="{Binding Header, UpdateSourceTrigger=PropertyChanged}"
-                TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="24"></TextBlock>
-            <Label FontSize="16" Content="{Binding MainText, UpdateSourceTrigger=PropertyChanged}"></Label>
+            <Button Command="{Binding CloseWindow, UpdateSourceTrigger=PropertyChanged}" 
+                    HorizontalAlignment="Left" Background="White" BorderBrush="White">
+                <Image Height="25" Width="100" Source="/../Images/back.png"></Image>
+            </Button>
+            <StackPanel>
+
+                <TextBox Margin="10" BorderBrush="White" Background="White"
+                    Text="{Binding Header, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="24"></TextBox>
+
+                <RichTextBox BorderBrush="White" Background="White"
+                    Margin="7, 15, 7, 7" FontSize="16">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text="{Binding MainText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Run>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

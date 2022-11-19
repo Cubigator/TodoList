@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TodoList.Model;
 
 namespace TodoList.ViewModels
@@ -42,6 +43,19 @@ namespace TodoList.ViewModels
             {
                 _mainText = value;
                 Notify("MainText");
+            }
+        }
+
+        public ButtonCommand CloseWindow
+        {
+            get
+            {
+                return new ButtonCommand(() =>
+                {
+                    ExerciseINFO.Header = Header;
+                    ExerciseINFO.MainText = MainText;
+                    
+                });
             }
         }
 

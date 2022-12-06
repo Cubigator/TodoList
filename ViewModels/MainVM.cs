@@ -24,7 +24,8 @@ namespace TodoList.ViewModels
         }
 
         static Exercise _addedTask;
-        static AddExercise _addExercise = new AddExercise();
+        static AddExercise _addExercise;
+        public static ExerciseWindow ExerciseWindow;
 
         string _find;
 
@@ -68,8 +69,10 @@ namespace TodoList.ViewModels
                     {
                         ExerciseINFO.Header = SearchedTodos[exerciseEC.Index].Header;
                         ExerciseINFO.MainText = SearchedTodos[exerciseEC.Index].MainText;
-                        ExerciseWindow exerciseWindow = new ExerciseWindow();
-                        exerciseWindow.ShowDialog();
+
+                        ExerciseWindow = new ExerciseWindow();
+                        ExerciseWindow.ShowDialog();
+
                         SearchedTodos[exerciseEC.Index].Header = ExerciseINFO.Header;
                         SearchedTodos[exerciseEC.Index].MainText = ExerciseINFO.MainText;
                         UpdateCategories(SearchedTodos);
@@ -104,8 +107,10 @@ namespace TodoList.ViewModels
                     {
                         ExerciseINFO.Header = SearchedTodos[exerciseEC.Index].Header;
                         ExerciseINFO.MainText = SearchedTodos[exerciseEC.Index].MainText;
-                        ExerciseWindow exerciseWindow = new ExerciseWindow();
-                        exerciseWindow.ShowDialog();
+
+                        ExerciseWindow = new ExerciseWindow();
+                        ExerciseWindow.ShowDialog();
+
                         SearchedTodos[exerciseEC.Index].Header = ExerciseINFO.Header;
                         SearchedTodos[exerciseEC.Index].MainText = ExerciseINFO.MainText;
                         UpdateCategories(SearchedTodos);
@@ -157,6 +162,7 @@ namespace TodoList.ViewModels
             {
                 return new ButtonCommand(() =>
                     {
+                        _addExercise = new AddExercise();
                         _addExercise.ShowDialog();
                         if(_addExercise.DialogResult == true)
                         {
@@ -167,7 +173,6 @@ namespace TodoList.ViewModels
                             Notify("Todos");
                             Notify("Finished");
                         }
-                        _addExercise = new AddExercise();
                         JsonHandler.Save(_AllExercises);
                     });
             }
@@ -180,7 +185,7 @@ namespace TodoList.ViewModels
                 return new ButtonCommand(() =>
                 {
                     _addExercise.DialogResult = true;
-                });
+                }, () => { return AddedTask.Header != null && AddedTask.MainText != null; });
             }
         }
 

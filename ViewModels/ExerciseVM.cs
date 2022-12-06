@@ -54,7 +54,7 @@ namespace TodoList.ViewModels
                 {
                     ExerciseINFO.Header = Header;
                     ExerciseINFO.MainText = MainText;
-                    
+                    MainVM.ExerciseWindow.Close();
                 });
             }
         }

@@ -21,7 +21,7 @@
             <RowDefinition Height="12*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label FontSize="28" FontWeight="Bold"
+        <Label FontSize="34" FontWeight="Bold"
                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
             Foreground="White" Background="#4e92ce">TodoList</Label>
         <Label Grid.Column="1" Background="#4e92ce"></Label>
@@ -31,7 +31,7 @@
                     Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/../Images/home.png"></Image>
-                    <Label FontSize="14"
+                    <Label FontSize="22"
                         VerticalContentAlignment="Center">Home</Label>
                 </StackPanel>
             </Button>
@@ -40,7 +40,7 @@
                     Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/../Images/list.png"></Image>
-                    <Label FontSize="14"
+                    <Label FontSize="22"
                         VerticalContentAlignment="Center">Todos</Label>
                 </StackPanel>
             </Button>
@@ -49,7 +49,7 @@
                     Background="White" BorderBrush="White" HorizontalContentAlignment="Center" Height="50">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/../Images/info.png"></Image>
-                    <Label FontSize="14"
+                    <Label FontSize="22"
                         VerticalContentAlignment="Center">About</Label>
                 </StackPanel>
             </Button>
@@ -61,48 +61,71 @@
                 <Image Height="50" Source="/../Images/file.png" HorizontalAlignment="Right"></Image>
             </Button>
 
-            <TextBox Text="{Binding Find, UpdateSourceTrigger=PropertyChanged}" FontSize="20"></TextBox>
+            <TextBox Text="{Binding Find, UpdateSourceTrigger=PropertyChanged}" 
+                     FontSize="24"></TextBox>
             
-            <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Todos</Label>
-            <ListBox ItemsSource="{Binding Todos, UpdateSourceTrigger=PropertyChanged}" 
+            <Label HorizontalAlignment="Center" FontSize="32" FontWeight="Bold">Todos</Label>
+            <ListBox HorizontalContentAlignment="Stretch"
+                     ItemsSource="{Binding Todos, UpdateSourceTrigger=PropertyChanged}" 
                      BorderBrush="White">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox IsChecked="{Binding IsDone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Column="0" 
+                                      IsChecked="{Binding IsDone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
-                            <Label Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
-                            <Button Command="{Binding Edit, UpdateSourceTrigger=PropertyChanged}"
+                            <Label Grid.Column="1" FontSize="20"
+                                   Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
+                            <Button Grid.Column="2"
+                                Command="{Binding Edit, UpdateSourceTrigger=PropertyChanged}"
                                 Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/edit.png"></Image>
                             </Button>
-                            <Button Command="{Binding Delete, UpdateSourceTrigger=PropertyChanged}" 
+                            <Button Grid.Column="3"
+                                    Command="{Binding Delete, UpdateSourceTrigger=PropertyChanged}" 
                                     Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/delete.png"></Image>
                             </Button>
-                        </StackPanel>
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            
-            <Label HorizontalAlignment="Center" FontSize="24" FontWeight="Bold">Finished</Label>
-            <ListBox ItemsSource="{Binding Finished, UpdateSourceTrigger=PropertyChanged}"
+
+            <Label HorizontalAlignment="Center" FontSize="32" FontWeight="Bold">Finished</Label>
+            <ListBox HorizontalContentAlignment="Stretch"
+                     ItemsSource="{Binding Finished, UpdateSourceTrigger=PropertyChanged}"
                      BorderBrush="White">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox IsChecked="{Binding IsDone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Column="0"
+                                IsChecked="{Binding IsDone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
-                            <Label HorizontalAlignment="Left" Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
-                            <Button Command="{Binding Edit, UpdateSourceTrigger=PropertyChanged}"
+                            <Label Grid.Column="1" FontSize="20"
+                                HorizontalAlignment="Left" Content="{Binding Header, UpdateSourceTrigger=PropertyChanged}"></Label>
+                            <Button Grid.Column="2"
+                                Command="{Binding Edit, UpdateSourceTrigger=PropertyChanged}"
                                 Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/edit.png"></Image>
                             </Button>
-                            <Button Command="{Binding Delete, UpdateSourceTrigger=PropertyChanged}"
+                            <Button Grid.Column="3"
+                                Command="{Binding Delete, UpdateSourceTrigger=PropertyChanged}"
                                     Background="White" BorderBrush="White">
                                 <Image Height="25" Source="/../Images/delete.png"></Image>
                             </Button>
-                        </StackPanel>
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
